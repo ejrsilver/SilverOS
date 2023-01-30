@@ -9,9 +9,9 @@ int get_offset(int col, int row);
 int get_offset_row(int offset);
 int get_offset_col(int offset);
 
-void kprint_at(char* message, int col, int row) {
+void print_string_at(char* message, int row, int col, char attr) {
   int offset;
-  if (col >=0 && row >= 0) {
+  if (col >0 && row > 0) {
     offset = get_offset(col, row);
   } else {
     offset = get_cursor_offset();
@@ -21,14 +21,22 @@ void kprint_at(char* message, int col, int row) {
   
   int i = 0;
   while (message[i] != 0) {
-    offset = print_char(message[i++], col, row, WHITE_ON_BLACK);
+    offset = print_char(message[i++], col, row, attr);
     row = get_offset_row(offset);
     col = get_offset_col(offset);
   }
 }
 
+void print_string(char* message, char attr) {
+  print_string_at(message,-1,-1, attr);
+}
+
+void kprint_at(char* message, int row, int col) {
+  print_string_at(message, row, col, WHITE_ON_BLACK);
+}
+
 void kprint(char* message) {
-  kprint_at(message,-1,-1);
+  print_string_at(message,-1,-1, WHITE_ON_BLACK);
 }
 
 int print_char(char c, int col, int row, char attr) {
