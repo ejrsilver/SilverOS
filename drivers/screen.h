@@ -1,3 +1,6 @@
+#ifndef SCREEN_H
+#define SCREEN_H
+
 #define VGA_ADDRESS 0xb8000
 #define MAX_ROWS 25
 #define MAX_COLS 80
@@ -13,6 +16,7 @@
 #define MAGENTA 0x5
 #define BROWN   0x6
 #define GRAY    0x7
+#define WHITE   0xf
 
 #define WHITE_ON_BLACK 0x0f
 #define RED_ON_WHITE 0xf4
@@ -22,3 +26,5 @@ void kprint_at(char *message, int col, int row);
 void kprint(char *message);
 void print_string_at(char *message, int col, int row, char attr);
 void print_string(char *message, char attr);
+
+#endif

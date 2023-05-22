@@ -1,8 +1,11 @@
 #include "../drivers/screen.h"
 #include "util.h"
+#include "../cpu/isr.h"
 
 void main() {
-  clear_screen();
-  
-  print_string("According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little. Barry! Breakfast is ready! Ooming! Hang on a second. Hello? - Barry? - Adam?", ((GREEN | 0x8) << 4) | BLUE);
+  /* clear_screen(); */
+  isr_install();
+
+  __asm__ __volatile__("int $2");
+  __asm__ __volatile__("int $3");
 }
