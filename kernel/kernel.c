@@ -10,4 +10,5 @@ void main() {
 
   __asm__ __volatile__ ("sti");
   init_keyboard();
+  init_timer(1);
 }
